@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Layers, GitBranch, Smartphone } from 'lucide-react'
+import uiUxImg from '../../ui_ux.jpg'
 
 export default function Frontend() {
   const containerVariants = {
@@ -78,16 +79,17 @@ export default function Frontend() {
           </motion.div>
         </motion.div>
 
-        {/* Side Cards */}
         <motion.div
-          className="md:col-span-4 bg-surface-container-high/30 backdrop-blur-md p-10 flex flex-col justify-between group border border-white/5 hover:border-primary/20 transition-colors rounded-xl"
+          className="md:col-span-4 bg-surface-container-high/30 backdrop-blur-md p-6 flex flex-col justify-start group border border-white/5 hover:border-primary/20 transition-colors rounded-xl overflow-hidden gap-6"
           variants={itemVariants}
           whileHover={{ y: -5, borderColor: 'rgba(84, 231, 139, 0.5)' }}
         >
-          <Layers className="w-12 h-12 text-primary group-hover:scale-110 transition-transform" />
+          <div className="w-full flex-shrink-0 mb-4 overflow-hidden rounded-lg">
+            <img src={uiUxImg} alt="UI/UX" className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
           <div>
-            <h3 className="font-headline text-3xl font-bold text-white mb-2">Virtual DOM</h3>
-            <p className="text-on-surface-variant">Efficient reconciliation algorithms that minimize direct manipulation of the actual DOM.</p>
+            <h3 className="font-headline text-3xl font-bold text-white mb-2">Visualisation Importance</h3>
+            <p className="text-on-surface-variant">Bridging the gap between raw data and human understanding through intuitive, interactive graphic representations.</p>
           </div>
         </motion.div>
 
