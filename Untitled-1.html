@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Beyond HTML &amp; CSS | GFG DYPIU Campus Club</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "background": "#131313",
+              "on-primary-container": "#004f27",
+              "on-secondary-container": "#00566a",
+              "surface": "#131313",
+              "tertiary-fixed-dim": "#e0b6ff",
+              "surface-tint": "#4ce085",
+              "surface-container-highest": "#353534",
+              "surface-container-high": "#2a2a2a",
+              "error": "#ffb4ab",
+              "surface-container-lowest": "#0e0e0e",
+              "on-tertiary": "#4c007d",
+              "on-primary": "#00391a",
+              "primary-fixed-dim": "#4ce085",
+              "surface-variant": "#353534",
+              "outline": "#869486",
+              "error-container": "#93000a",
+              "inverse-on-surface": "#313030",
+              "on-surface-variant": "#bccabb",
+              "tertiary-container": "#d29aff",
+              "on-surface": "#e5e2e1",
+              "surface-bright": "#3a3939",
+              "on-background": "#e5e2e1",
+              "surface-container": "#201f1f",
+              "on-secondary-fixed": "#001f28",
+              "on-error": "#690005",
+              "on-secondary-fixed-variant": "#004e60",
+              "primary-fixed": "#6dfd9f",
+              "secondary-fixed-dim": "#47d6ff",
+              "secondary": "#a5e7ff",
+              "surface-dim": "#131313",
+              "on-tertiary-fixed-variant": "#6a0baa",
+              "on-secondary": "#003543",
+              "tertiary-fixed": "#f2daff",
+              "outline-variant": "#3d4a3e",
+              "on-primary-fixed": "#00210d",
+              "inverse-primary": "#006d38",
+              "surface-container-low": "#1c1b1b",
+              "secondary-fixed": "#b6ebff",
+              "primary": "#54e78b",
+              "secondary-container": "#00d2ff",
+              "primary-container": "#2fca72",
+              "tertiary": "#e4beff",
+              "on-error-container": "#ffdad6",
+              "on-tertiary-container": "#6703a7",
+              "inverse-surface": "#e5e2e1",
+              "on-tertiary-fixed": "#2e004e",
+              "on-primary-fixed-variant": "#005228"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        :root {
+            --primary: #54e78b;
+            --secondary: #00d2ff;
+            --tertiary: #e4beff;
+            --background: #0e0e0e;
+        }
+
+        body {
+            background-color: var(--background);
+            color: #e5e2e1;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            cursor: none; /* Custom cursor */
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #131313; }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            border-radius: 10px;
+        }
+
+        .glass-panel {
+            background: rgba(53, 53, 52, 0.4);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(84, 231, 139, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(84, 231, 139, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(47, 202, 114, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .neon-glow:hover {
+            box-shadow: 0 0 30px rgba(47, 202, 114, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .bg-mesh {
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(84, 231, 139, 0.15) 0, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(0, 210, 255, 0.1) 0, transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-pulse-slow { animation: pulse-slow 4s ease-in-out infinite; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Cursor */
+        #custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+
+        #custom-cursor-dot {
+            width: 4px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-hover #custom-cursor {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(84, 231, 139, 0.1);
+            border-color: var(--secondary);
+        }
+
+        /* Magnetic Button Effect */
+        .magnetic-btn {
+            display: inline-flex;
+            transition: transform 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+        }
+
+        /* Scanline Effect */
+        .scanline::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: rgba(84, 231, 139, 0.2);
+            animation: scanline 4s linear infinite;
+            pointer-events: none;
+        }
+
+        /* Nav hover animation */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Particle Background */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* Lead Profile Circles */
+        .lead-profile {
+             position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 150px;
+            height: 150px;
+            z-index: 100;
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+            box-shadow: 0 0 30px var(--primary);
+            overflow: visible;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface-container-high);
+            transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+            opacity: 0;
+            transform: scale(0) translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            pointer-events: auto;
+        }
+
+        .lead-profile.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .lead-profile img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .lead-heading {
+            position: absolute;
+            bottom: -40px;
+            white-space: nowrap;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            filter: drop-shadow(0 0 10px rgba(84, 231, 139, 0.5));
+        }
+
+        .lead-profile-left.final {
+            top: 100px;
+            left: 100px;
+            transform: translate(0, 0) scale(1);
+        }
+
+        .lead-profile-right.final {
+            top: 100px;
+            left: calc(100% - 250px); /* 100px margin + 150px width */
+            transform: translate(0, 0) scale(1);
+        }
+
+        .lead-profile:hover {
+            transform: scale(1.1) translate(-50%, -50%);
+            border-color: var(--secondary);
+            box-shadow: 0 0 50px var(--secondary);
+            z-index: 101;
+        }
+
+        .lead-profile.final:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .lead-profile {
+                width: 100px;
+                height: 100px;
+            }
+            .lead-profile-left.final {
+                top: 80px;
+                left: 20px;
+                transform: translate(0, 0) scale(1);
+            }
+            .lead-profile-right.final {
+                top: 80px;
+                left: calc(100% - 120px); /* 20px margin + 100px width */
+                transform: translate(0, 0) scale(1);
+            }
+            .lead-heading {
+                font-size: 0.8rem;
+                bottom: -30px;
+            }
+        }
+        /* Flip Card Styles */
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 400px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 1.5rem;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+            overflow: hidden;
+        }
+
+        .flip-card-back img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary/30 selection:text-primary">
+<!-- Particle Background -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- Lead Profile Circles (Animated on Load) -->
+<div id="lead-left" class="lead-profile lead-profile-left group">
+    <img src="C:\Users\Yash Tripathi\Desktop\gfg_presentation-main\azka2.jpeg" alt="Azka WebDevFrontend Lead">
+    <div class="lead-heading">Azka WebDevFrontend Lead</div>
+</div>
+<div id="lead-right" class="lead-profile lead-profile-right group">
+    <img src="C:\Users\Yash Tripathi\Desktop\gfg_presentation-main\yash.png" alt=" Yash WebDevBackend Lead">
+    <div class="lead-heading">Yash WebDevBackend Lead</div>
+</div>
+
+<!-- Custom Cursor -->
+<div id="custom-cursor"></div>
+<div id="custom-cursor-dot"></div>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="fixed inset-0 z-[60] bg-background/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-8 md:hidden">
+    <button id="close-menu" class="absolute top-8 right-8 text-primary">
+        <span class="material-symbols-outlined text-4xl">close</span>
+    </button>
+    <a class="text-3xl font-headline font-bold text-primary hover:text-secondary transition-colors" href="#hero" onclick="toggleMenu()">Hero</a>
+    <a class="text-3xl font-headline font-bold text-on-surface hover:text-primary transition-colors" href="#journey" onclick="toggleMenu()">Journey</a>
+    <a class="text-3xl font-headline font-bold text-on-surface hover:text-primary transition-colors" href="#frontend" onclick="toggleMenu()">Frontend</a>
+    <a class="text-3xl font-headline font-bold text-on-surface hover:text-primary transition-colors" href="#backend" onclick="toggleMenu()">Backend</a>
+    <a class="text-3xl font-headline font-bold text-on-surface hover:text-primary transition-colors" href="#architecture" onclick="toggleMenu()">Architecture</a>
+    <a class="text-3xl font-headline font-bold text-on-surface hover:text-primary transition-colors" href="#advanced" onclick="toggleMenu()">Advanced</a>
+</div>
+
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-[#131313]/40 backdrop-blur-xl border-b border-[#54e78b]/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-full mx-auto">
+<div class="text-xl font-bold tracking-tighter text-[#2fca72] font-headline flex items-center gap-3">
+    <img src="C:\Users\Yash Tripathi\Desktop\gfg_presentation-main\gfglogo.jpeg" alt="GEEKVERSE Logo" class="w-10 h-10 object-contain rounded-lg border border-[#54e78b]/20">
+    GEEKVERSE
+</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="nav-link font-['Space_Grotesk'] tracking-tight text-sm uppercase text-[#2fca72]" href="#hero">Hero</a>
+<a class="nav-link font-['Space_Grotesk'] tracking-tight text-sm uppercase text-[#e5e2e1]/70 hover:text-[#2fca72] transition-colors" href="#journey">Journey</a>
+<a class="nav-link font-['Space_Grotesk'] tracking-tight text-sm uppercase text-[#e5e2e1]/70 hover:text-[#2fca72] transition-colors" href="#frontend">Frontend</a>
+<a class="nav-link font-['Space_Grotesk'] tracking-tight text-sm uppercase text-[#e5e2e1]/70 hover:text-[#2fca72] transition-colors" href="#backend">Backend</a>
+<a class="nav-link font-['Space_Grotesk'] tracking-tight text-sm uppercase text-[#e5e2e1]/70 hover:text-[#2fca72] transition-colors" href="#architecture">Architecture</a>
+<a class="nav-link font-['Space_Grotesk'] tracking-tight text-sm uppercase text-[#e5e2e1]/70 hover:text-[#2fca72] transition-colors" href="#advanced">Advanced</a>
+</div>
+<div class="flex items-center gap-4">
+    <button id="menu-btn" class="md:hidden text-primary">
+        <span class="material-symbols-outlined text-3xl">menu</span>
+    </button>
+</div>
+</div>
+</nav>
+<!-- Section 1: Hero -->
+<section class="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden bg-mesh" id="hero">
+<div class="absolute inset-0 z-0">
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] animate-pulse-slow"></div>
+<div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[150px] animate-pulse-slow" style="animation-delay: -2s"></div>
+</div>
+<div class="relative z-10 text-center max-w-5xl mx-auto reveal">
+<div class="inline-block px-4 py-1 mb-6 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-bold tracking-[0.2em] uppercase scanline overflow-hidden relative">
+    Session 01 : Future Web
+</div>
+<h1 class="text-6xl md:text-8xl font-headline font-bold text-on-surface mb-8 tracking-tighter leading-none">
+                Beyond HTML &amp; <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary animate-pulse">CSS</span>
+</h1>
+<p class="text-xl md:text-2xl text-on-surface-variant font-light mb-12 max-w-2xl mx-auto">
+                Presented by <span class="text-primary font-medium">GeeksforGeeks DYPIU Campus Club</span>. Mastering the engine behind the interface.
+            </p>
+</div>
+</section>
+
+<!-- Section 2: What is Frontend -->
+<section class="py-24 px-6 md:px-12 bg-surface reveal" id="frontend">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-20">
+<div class="md:col-span-7">
+<h2 class="text-4xl md:text-6xl font-headline font-bold mb-6 tracking-tight">What is <span class="text-primary">Frontend</span>?</h2>
+<p class="text-xl text-on-surface-variant leading-relaxed">
+                        Beyond the static documents of the 90s, modern Frontend Development is the fusion of <span class="text-secondary">UI (User Interface)</span>, <span class="text-tertiary">UX (User Experience)</span>, and <span class="text-primary">Performance Engineering</span>. It's about building living, breathing applications in the browser.
+                    </p>
+</div>
+<div class="md:col-span-5 flex justify-end">
+<div class="flex gap-4">
+<span class="px-4 py-2 rounded-full bg-surface-container text-primary border border-primary/20 text-sm font-bold">React</span>
+<span class="px-4 py-2 rounded-full bg-surface-container text-secondary border border-secondary/20 text-sm font-bold">Next.js</span>
+<span class="px-4 py-2 rounded-full bg-surface-container text-tertiary border border-tertiary/20 text-sm font-bold">Tailwind</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+<!-- Card 1 -->
+<div class="glass-panel p-8 rounded-xl group hover:border-primary/50 transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary opacity-50"></div>
+<span class="material-symbols-outlined text-primary text-4xl mb-6">dynamic_form</span>
+<h3 class="text-xl font-headline font-bold mb-4">Virtual DOM</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">The magic that allows React to update only what changed, resulting in lightning-fast UI transitions.</p>
+</div>
+<!-- Card 2 -->
+<div class="glass-panel p-8 rounded-xl group hover:border-secondary/50 transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-secondary to-tertiary opacity-50"></div>
+<span class="material-symbols-outlined text-secondary text-4xl mb-6">view_quilt</span>
+<h3 class="text-xl font-headline font-bold mb-4">Architecture</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Thinking in components. Reusable pieces of UI that maintain their own state and logic.</p>
+</div>
+<!-- Card 4 -->
+<div class="glass-panel p-8 rounded-xl group hover:border-primary/50 transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary opacity-50"></div>
+<span class="material-symbols-outlined text-primary text-4xl mb-6">accessibility</span>
+<h3 class="text-xl font-headline font-bold mb-4">Responsive+</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Optimizing for every device while maintaining rigorous accessibility standards for all users.</p>
+</div>
+<!-- Card 3: Replacement Image (Enlarged & Moved to Right) -->
+<div class="md:col-span-2 rounded-xl overflow-hidden group hover:border-tertiary/50 transition-all duration-300 relative border border-transparent shadow-2xl">
+    <img src="C:\Users\Yash Tripathi\Desktop\gfg_presentation-main\fvsb.png" alt="Frontend vs Backend" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+    <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
+        <span class="text-tertiary font-headline font-bold text-xl mb-2">System Architecture</span>
+        <span class="text-xs font-bold text-on-surface-variant uppercase tracking-[0.2em]">Deep Dive: Frontend vs Backend</span>
+    </div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Section: My Frontend Journey -->
+<section class="py-24 px-6 md:px-12 bg-surface-container-lowest relative overflow-hidden reveal" id="journey">
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center mb-20">
+            <h2 class="text-5xl md:text-7xl font-headline font-bold mb-6 tracking-tighter">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Frontend Journey</span>
+            </h2>
+            <p class="text-xl text-on-surface-variant max-w-2xl mx-auto">From core structures to intelligent AI-driven interfaces.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <!-- Phase 1: The Core -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-panel p-8 text-left group hover:border-primary/40 transition-all duration-500">
+                        <div class="absolute -top-4 -left-4 w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center font-bold text-primary border border-primary/40 backdrop-blur-md">01</div>
+                        <div class="mb-6 flex items-center gap-4">
+                            <div class="p-3 bg-primary/10 rounded-2xl text-primary group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-3xl">architecture</span>
+                            </div>
+                            <h3 class="text-2xl font-headline font-bold">The Core Stack</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3 p-3 bg-surface-container rounded-xl border border-outline-variant/50">
+                                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                                <span class="font-bold">HTML</span>
+                                <span class="text-xs text-on-surface-variant ml-auto">Structure</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-surface-container rounded-xl border border-outline-variant/50">
+                                <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                                <span class="font-bold">CSS</span>
+                                <span class="text-xs text-on-surface-variant ml-auto">Visuals</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-surface-container rounded-xl border border-outline-variant/50">
+                                <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                                <span class="font-bold">JS</span>
+                                <span class="text-xs text-on-surface-variant ml-auto">The Brain</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back border-4 border-primary/30">
+                        <img src="C:\Users\Yash Tripathi\Desktop\gfg_presentation-main\htmlcssjs.jpg" alt="Core Stack Visual">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 2: Strategic Impact -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-panel p-8 text-left group hover:border-secondary/40 transition-all duration-500">
+                        <div class="absolute -top-4 -left-4 w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center font-bold text-secondary border border-secondary/40 backdrop-blur-md">02</div>
+                        <div class="mb-6 flex items-center gap-4">
+                            <div class="p-3 bg-secondary/10 rounded-2xl text-secondary group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-3xl">psychology</span>
+                            </div>
+                            <h3 class="text-2xl font-headline font-bold">Strategic Impact</h3>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex gap-4 items-start">
+                                <span class="material-symbols-outlined text-secondary">flare</span>
+                                <div>
+                                    <span class="block font-bold">First Impressions</span>
+                                    <p class="text-xs text-on-surface-variant">The 50ms window that defines brand trust.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4 items-start">
+                                <span class="material-symbols-outlined text-secondary">speed</span>
+                                <div>
+                                    <span class="block font-bold">User Experience</span>
+                                    <p class="text-xs text-on-surface-variant">Frictionless flow between intent and action.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4 items-start">
+                                <span class="material-symbols-outlined text-secondary">hub</span>
+                                <div>
+                                    <span class="block font-bold">Deep Engagement</span>
+                                    <p class="text-xs text-on-surface-variant">Turning visitors into recurring users.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flip-card-back border-4 border-secondary/30">
+                        <img src="C:\Users\Yash Tripathi\Desktop\gfg_presentation-main\ui_ux.jpg" alt="Strategic Impact Visual">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 3: Modern Tooling -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front glass-panel p-8 text-left group hover:border-tertiary/40 transition-all duration-500">
+                        <div class="absolute -top-4 -left-4 w-12 h-12 bg-tertiary/20 rounded-full flex items-center justify-center font-bold text-tertiary border border-tertiary/40 backdrop-blur-md">03</div>
+                        <div class="mb-6 flex items-center gap-4">
+                            <div class="p-3 bg-tertiary/10 rounded-2xl text-tertiary group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-3xl">auto_fix_high</span>
+                            </div>
+                            <h3 class="text-2xl font-headline font-bold">Modern Tooling</h3>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 bg-surface-container rounded-2xl border border-outline-variant/50 text-center group-hover:bg-primary/5 transition-colors">
+                                <span class="material-symbols-outlined text-primary mb-2">view_quilt</span>
+                                <span class="block text-xs font-bold">Flex/Grid</span>
+                            </div>
+                            <div class="p-4 bg-surface-container rounded-2xl border border-outline-variant/50 text-center group-hover:bg-secondary/5 transition-colors">
+                                <span class="material-symbols-outlined text-secondary mb-2">animation</span>
+                                <span class="block text-xs font-bold">Motion</span>
+                            </div>
+                            <div class="p-4 bg-surface-container rounded-2xl border border-outline-variant/50 text-center group-hover:bg-tertiary/5 transition-colors">
+                                <span class="material-symbols-outlined text-tertiary mb-2">code_blocks</span>
+                                <span class="block text-xs font-bold">Logic</span>
+                            </div>
+                            <div class="p-4 bg-surface-container rounded-2xl border border-outline-variant/50 text-center group-hover:bg-primary/5 transition-colors">
+                                <span class="material-symbols-outlined text-primary mb-2">layers</span>
+                                <span class="block text-xs font-bold">DOM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back border-4 border-tertiary/30">
+                        <img src="C:\Users\Yash Tripathi\Desktop\gfg_presentation-main\tools.jpg" alt="Modern Tooling Visual">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI & Final Section -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+            <div class="md:col-span-8 glass-panel p-10 rounded-[2.5rem] relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <span class="material-symbols-outlined text-[120px] text-primary">smart_toy</span>
+                </div>
+                <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
+                    <div class="flex-1">
+                        <div class="inline-block px-4 py-1 mb-6 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-bold uppercase tracking-widest">Efficiency Engine</div>
+                        <h3 class="text-3xl font-headline font-bold mb-6">Vibe Coding Ecosystem</h3>
+                        <div class="flex flex-wrap gap-4">
+                            <div class="px-6 py-3 rounded-2xl bg-surface-container border border-outline-variant/50 flex items-center gap-3 hover:border-primary transition-all">
+                                <span class="material-symbols-outlined text-primary">chat</span>
+                                <span class="font-bold">Loveable</span>
+                            </div>
+                            <div class="px-6 py-3 rounded-2xl bg-surface-container border border-outline-variant/50 flex items-center gap-3 hover:border-secondary transition-all">
+                                <span class="material-symbols-outlined text-secondary">robot_2</span>
+                                <span class="font-bold">Cursor</span>
+                            </div>
+                            <div class="px-6 py-3 rounded-2xl bg-surface-container border border-outline-variant/50 flex items-center gap-3 hover:border-tertiary transition-all">
+                                <span class="material-symbols-outlined text-tertiary">draw</span>
+                                <span class="font-bold">Gemini</span>
+                            </div>
+                            <div class="px-6 py-3 rounded-2xl bg-surface-container border border-outline-variant/50 flex items-center gap-3 hover:border-primary transition-all">
+                                <span class="material-symbols-outlined text-primary">web</span>
+                                <span class="font-bold">Trae</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-[45%] rounded-2xl overflow-hidden border border-primary/20 shadow-2xl group-hover:border-primary/50 transition-all duration-500">
+                        <img src="C:\Users\Yash Tripathi\Desktop\gfg_presentation-main\Vibe-Coding-1.png" alt="Vibe Coding" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-4 bg-gradient-to-br from-primary/20 to-secondary/20 p-1 rounded-[2.5rem]">
+                <div class="h-full bg-surface-container-lowest rounded-[2.4rem] p-10 flex flex-col justify-center items-center text-center group">
+                    <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-125 transition-transform duration-500">
+                        <span class="material-symbols-outlined text-primary text-4xl">verified</span>
+                    </div>
+                    <h4 class="text-xs uppercase tracking-[0.3em] text-on-surface-variant mb-4 font-bold">Final Message</h4>
+                    <p class="text-2xl font-headline font-bold leading-tight">
+                        “Use <span class="text-primary">AI</span> with <span class="text-secondary">Understanding</span>”
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section 3: Frontend Architecture -->
+<section class="py-24 px-6 md:px-12 bg-surface-container-low relative overflow-hidden reveal" id="architecture">
+<div class="max-w-7xl mx-auto">
+<h2 class="text-4xl md:text-5xl font-headline font-bold mb-16 text-center">Rendering <span class="text-secondary">Mechanics</span></h2>
+<div class="relative flex flex-col md:flex-row items-center justify-between gap-12 py-12">
+<!-- Step 1 -->
+<div class="flex flex-col items-center text-center max-w-xs z-10 hover:scale-110 transition-transform duration-300">
+<div class="w-20 h-20 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center mb-6 shadow-xl neon-glow">
+<span class="material-symbols-outlined text-primary text-3xl">person</span>
+</div>
+<h4 class="text-lg font-bold mb-2">User Interaction</h4>
+<p class="text-xs text-on-surface-variant">A click, a scroll, or a keypress triggers an event.</p>
+</div>
+<!-- Arrow 1 -->
+<div class="hidden md:block flex-1 h-[2px] bg-gradient-to-r from-primary/20 to-secondary/50 relative">
+<div class="absolute -right-2 -top-[6px] w-4 h-4 rounded-full bg-secondary shadow-[0_0_10px_rgba(0,210,255,0.8)] animate-pulse"></div>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center text-center max-w-xs z-10 hover:scale-110 transition-transform duration-300">
+<div class="w-20 h-20 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center mb-6 shadow-xl neon-glow">
+<span class="material-symbols-outlined text-secondary text-3xl">browser_updated</span>
+</div>
+<h4 class="text-lg font-bold mb-2">Browser Parsing</h4>
+<p class="text-xs text-on-surface-variant">HTML, CSS, and JS are fetched and parsed into nodes.</p>
+</div>
+<!-- Arrow 2 -->
+<div class="hidden md:block flex-1 h-[2px] bg-gradient-to-r from-secondary/50 to-tertiary/20 relative">
+<div class="absolute -right-2 -top-[6px] w-4 h-4 rounded-full bg-tertiary shadow-[0_0_10px_rgba(228,190,255,0.8)] animate-pulse"></div>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center text-center max-w-xs z-10 hover:scale-110 transition-transform duration-300">
+<div class="w-20 h-20 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center mb-6 shadow-xl neon-glow">
+<span class="material-symbols-outlined text-tertiary text-3xl">draw</span>
+</div>
+<h4 class="text-lg font-bold mb-2">UI Rendering</h4>
+<p class="text-xs text-on-surface-variant">Layout calculation and painting pixels on screen.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20">
+<div class="glass-panel p-10 rounded-2xl border-l-4 border-l-primary group">
+<h3 class="text-2xl font-headline font-bold mb-4 group-hover:text-primary transition-colors">CSR <span class="text-sm font-normal text-on-surface-variant">(Client-Side Rendering)</span></h3>
+<p class="text-on-surface-variant mb-6">The browser downloads a minimal HTML file and a large JS bundle. The JS then generates the entire page. Fast transitions, slow first load.</p>
+<div class="flex items-center gap-2 text-primary font-bold uppercase text-xs tracking-widest">
+<span class="material-symbols-outlined text-sm animate-bounce">bolt</span> High Interactivity
+                    </div>
+</div>
+<div class="glass-panel p-10 rounded-2xl border-l-4 border-l-secondary group">
+<h3 class="text-2xl font-headline font-bold mb-4 group-hover:text-secondary transition-colors">SSR + Hydration <span class="text-sm font-normal text-on-surface-variant">(Server-Side Rendering)</span></h3>
+<p class="text-on-surface-variant mb-6">The server generates the full HTML on each request. Hydration makes it interactive after it reaches the browser. Instant first load, best for SEO.</p>
+<div class="flex items-center gap-2 text-secondary font-bold uppercase text-xs tracking-widest">
+<span class="material-symbols-outlined text-sm animate-bounce">search</span> SEO Optimized
+                    </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: What is Backend -->
+<section class="py-24 px-6 md:px-12 bg-surface relative reveal" id="backend">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div class="order-2 md:order-1 relative">
+<div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-primary/20 shadow-2xl scanline overflow-hidden relative">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant pb-2">
+<div class="w-3 h-3 rounded-full bg-error animate-pulse"></div>
+<div class="w-3 h-3 rounded-full bg-tertiary animate-pulse" style="animation-delay: 0.2s"></div>
+<div class="w-3 h-3 rounded-full bg-primary animate-pulse" style="animation-delay: 0.4s"></div>
+<span class="ml-2 text-xs font-mono text-outline">server.js</span>
+</div>
+<pre class="font-mono text-sm leading-relaxed overflow-x-auto text-primary-fixed-dim"><span class="text-tertiary">const</span> express = <span class="text-secondary">require</span>(<span class="text-secondary-fixed">'express'</span>);
+<span class="text-tertiary">const</span> app = <span class="text-secondary">express</span>();
+
+app.<span class="text-secondary">get</span>(<span class="text-secondary-fixed">'/api/user'</span>, (req, res) =&gt; {
+  <span class="text-tertiary-fixed-dim">// Query Database</span>
+  <span class="text-tertiary">const</span> user = db.find(req.id);
+  res.<span class="text-secondary">json</span>(user);
+});
+
+app.<span class="text-secondary">listen</span>(<span class="text-primary">3000</span>);</pre>
+</div>
+</div>
+<div class="order-1 md:order-2">
+<h2 class="text-4xl md:text-6xl font-headline font-bold mb-8">The <span class="text-primary">Backend</span> Engine</h2>
+<p class="text-xl text-on-surface-variant leading-relaxed mb-8">
+                    If Frontend is the body, Backend is the brain. It manages the <span class="text-primary font-bold">Logic</span>, handles the <span class="text-secondary font-bold">Servers</span>, and secures the <span class="text-tertiary font-bold">Databases</span>.
+                </p>
+<div class="space-y-6">
+<div class="flex gap-4 items-start group">
+<div class="bg-primary/10 p-2 rounded text-primary group-hover:bg-primary group-hover:text-on-primary transition-all">
+<span class="material-symbols-outlined">api</span>
+</div>
+<div>
+<h4 class="font-bold group-hover:text-primary transition-colors">APIs &amp; Routing</h4>
+<p class="text-sm text-on-surface-variant">Creating the communication bridges for data exchange.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start group">
+<div class="bg-secondary/10 p-2 rounded text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-all">
+<span class="material-symbols-outlined">security</span>
+</div>
+<div>
+<h4 class="font-bold group-hover:text-secondary transition-colors">Auth &amp; Security</h4>
+<p class="text-sm text-on-surface-variant">Protecting user data through encryption and tokens.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start group">
+<div class="bg-tertiary/10 p-2 rounded text-tertiary group-hover:bg-tertiary group-hover:text-on-tertiary transition-all">
+<span class="material-symbols-outlined">storage</span>
+</div>
+<div>
+<h4 class="font-bold group-hover:text-tertiary transition-colors">Persistence</h4>
+<p class="text-sm text-on-surface-variant">Ensuring data stays safe and accessible long-term.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5 & 6: Connection & Real World Flow -->
+<section class="py-24 px-6 md:px-12 bg-surface-container overflow-hidden reveal" id="connection">
+<div class="max-w-7xl mx-auto">
+<h2 class="text-4xl font-headline font-bold text-center mb-20">Real-World <span class="text-primary">Integration</span></h2>
+<!-- Flow Diagram -->
+<div class="flex flex-col lg:flex-row gap-8 items-stretch">
+<!-- User UI -->
+<div class="flex-1 glass-panel p-8 rounded-2xl flex flex-col items-center">
+<div class="w-full h-40 bg-surface-container-lowest rounded-lg mb-6 border border-outline-variant p-4">
+<div class="w-full h-2 bg-outline-variant rounded mb-3"></div>
+<div class="w-2/3 h-2 bg-outline-variant rounded mb-6"></div>
+<div class="w-full h-8 bg-primary/20 rounded-md border border-primary/40 flex items-center justify-center text-primary text-[10px] font-bold">LOGIN CLICKED</div>
+</div>
+<span class="text-xs font-bold text-primary tracking-widest uppercase mb-2">Frontend</span>
+<p class="text-center text-sm text-on-surface-variant">Sends HTTP Request with payload (email, pass)</p>
+</div>
+<!-- Connector -->
+<div class="flex lg:flex-col items-center justify-center py-4 lg:py-0">
+<span class="material-symbols-outlined text-primary text-4xl rotate-90 lg:rotate-0">sync_alt</span>
+</div>
+<!-- API/Server Logic -->
+<div class="flex-1 glass-panel p-8 rounded-2xl flex flex-col items-center">
+<div class="w-full h-40 bg-surface-container-lowest rounded-lg mb-6 border border-outline-variant p-4 flex flex-col justify-center gap-2">
+<div class="flex gap-2"><div class="w-4 h-2 bg-secondary rounded"></div><div class="flex-1 h-2 bg-outline-variant rounded"></div></div>
+<div class="flex gap-2"><div class="w-4 h-2 bg-secondary rounded"></div><div class="flex-1 h-2 bg-outline-variant rounded"></div></div>
+<div class="flex gap-2"><div class="w-4 h-2 bg-secondary rounded"></div><div class="flex-1 h-2 bg-outline-variant rounded"></div></div>
+</div>
+<span class="text-xs font-bold text-secondary tracking-widest uppercase mb-2">Server (Node/Python)</span>
+<p class="text-center text-sm text-on-surface-variant">Verifies password, generates JWT, queries DB</p>
+</div>
+<!-- Connector -->
+<div class="flex lg:flex-col items-center justify-center py-4 lg:py-0">
+<span class="material-symbols-outlined text-secondary text-4xl rotate-90 lg:rotate-0">sync_alt</span>
+</div>
+<!-- Database -->
+<div class="flex-1 glass-panel p-8 rounded-2xl flex flex-col items-center">
+<div class="w-full h-40 bg-surface-container-lowest rounded-lg mb-6 border border-outline-variant p-4 relative flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-6xl">database</span>
+</div>
+<span class="text-xs font-bold text-tertiary tracking-widest uppercase mb-2">Database</span>
+<p class="text-center text-sm text-on-surface-variant">Returns user document or error response</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 7: Advanced Concepts -->
+<section class="py-24 px-6 md:px-12 bg-surface reveal" id="advanced">
+<div class="max-w-7xl mx-auto">
+<div class="mb-16">
+<h2 class="text-4xl font-headline font-bold mb-4">The <span class="text-tertiary">Pro</span> Layer</h2>
+<p class="text-on-surface-variant">Essential technologies for scaling production-grade applications.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="p-6 rounded-xl border border-primary/40 hover:bg-primary/5 transition-all hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(84,231,139,0.1)] group cursor-pointer">
+<h5 class="text-primary font-bold mb-2 group-hover:scale-110 transition-transform origin-left">JWT Auth</h5>
+<p class="text-xs text-on-surface-variant">Stateless authentication using cryptographically signed tokens.</p>
+</div>
+<div class="p-6 rounded-xl border border-secondary/40 hover:bg-secondary/5 transition-all hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(0,210,255,0.1)] group cursor-pointer">
+<h5 class="text-secondary font-bold mb-2 group-hover:scale-110 transition-transform origin-left">GraphQL</h5>
+<p class="text-xs text-on-surface-variant">Ask for exactly what you need, get exactly that. No overfetching.</p>
+</div>
+<div class="p-6 rounded-xl border border-tertiary/40 hover:bg-tertiary/5 transition-all hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(228,190,255,0.1)] group cursor-pointer">
+<h5 class="text-tertiary font-bold mb-2 group-hover:scale-110 transition-transform origin-left">WebSockets</h5>
+<p class="text-xs text-on-surface-variant">Real-time bi-directional communication between client and server.</p>
+</div>
+<div class="p-6 rounded-xl border border-primary/40 hover:bg-primary/5 transition-all hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(84,231,139,0.1)] group cursor-pointer">
+<h5 class="text-primary font-bold mb-2 group-hover:scale-110 transition-transform origin-left">Cloud Edge</h5>
+<p class="text-xs text-on-surface-variant">Deploying code to global CDN edges for zero-latency execution.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 8: Interactive Simulator -->
+<section class="py-24 px-6 md:px-12 bg-surface-container-lowest relative overflow-hidden reveal">
+<div class="absolute inset-0 bg-mesh opacity-30 animate-pulse-slow"></div>
+<div class="max-w-4xl mx-auto relative z-10">
+<div class="glass-panel p-12 rounded-3xl text-center scanline relative overflow-hidden">
+<h2 class="text-3xl font-headline font-bold mb-8">Simulation Console</h2>
+<div class="mb-8 p-6 bg-surface-container-low rounded-xl border border-outline-variant font-mono text-left text-sm h-40 flex flex-col justify-start overflow-y-auto custom-scrollbar" id="sim-container">
+<p class="text-on-surface-variant" id="sim-text">> Ready for system initialization...</p>
+</div>
+<button class="bg-primary-container text-on-primary px-12 py-5 rounded-lg font-black text-xl hover:bg-primary transition-all neon-glow uppercase tracking-widest magnetic-btn" id="sim-button" onclick="runSimulation()">
+                    Invoke API Call
+                </button>
+</div>
+</div>
+</section>
+<!-- Section 9: Closing -->
+<footer class="bg-[#0e0e0e] w-full py-12 border-t border-[#54e78b]/5 reveal">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 gap-6">
+<div class="text-center md:text-left">
+<div class="text-lg font-black text-[#e5e2e1] font-headline mb-2 uppercase tracking-tighter">Start Your Dev Journey</div>
+<p class="text-[#2fca72] font-['Inter'] text-xs tracking-wide">"The future is built with code."</p>
+</div>
+<div class="flex gap-6">
+<a class="nav-link text-[#e5e2e1]/40 hover:text-[#00d2ff] transition-colors font-['Inter'] text-xs uppercase tracking-widest" href="#">Documentation</a>
+<a class="nav-link text-[#e5e2e1]/40 hover:text-[#00d2ff] transition-colors font-['Inter'] text-xs uppercase tracking-widest" href="#">GitHub</a>
+<a class="nav-link text-[#e5e2e1]/40 hover:text-[#00d2ff] transition-colors font-['Inter'] text-xs uppercase tracking-widest" href="#">Community</a>
+</div>
+<div class="text-[#e5e2e1]/40 font-['Inter'] text-xs tracking-wide">
+                © 2024 GFG DYPIU Campus Club • The Kinetic Ether
+            </div>
+</div>
+</footer>
+
+<script>
+    // Custom Cursor Logic
+    const cursor = document.getElementById('custom-cursor');
+    const cursorDot = document.getElementById('custom-cursor-dot');
+    
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        cursorDot.style.left = e.clientX + 'px';
+        cursorDot.style.top = e.clientY + 'px';
+    });
+
+    // Add hover state to cursor
+    const interactiveElements = document.querySelectorAll('a, button, .cursor-pointer');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+
+    // Intersection Observer for Reveal Animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Magnetic Button Effect
+    document.querySelectorAll('.magnetic-btn').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0, 0)';
+        });
+    });
+
+    // Mobile Menu Logic
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function toggleMenu() {
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+    }
+
+    menuBtn.addEventListener('click', toggleMenu);
+    closeBtn.addEventListener('click', toggleMenu);
+
+    // Enhanced Simulation Logic
+    function runSimulation() {
+        const text = document.getElementById('sim-text');
+        const btn = document.getElementById('sim-button');
+        const container = document.getElementById('sim-container');
+        
+        btn.disabled = true;
+        btn.classList.add('opacity-50', 'cursor-not-allowed');
+        
+        const logs = [
+            { t: '> Initializing handshake...', c: 'text-on-surface-variant' },
+            { t: '> Request: POST /api/v1/auth/login', c: 'text-secondary' },
+            { t: '> Status: 101 Switching Protocols', c: 'text-outline' },
+            { t: '> Encrypting payload with AES-256...', c: 'text-on-surface-variant' },
+            { t: '> Payload: { user: "geek_01", session: "active" }', c: 'text-xs text-outline' },
+            { t: '> Validating JWT Signature...', c: 'text-tertiary' },
+            { t: '> Database query: SELECT * FROM users WHERE id="geek_01"', c: 'text-xs text-outline' },
+            { t: '> Response: 200 OK - Access Granted', c: 'text-primary font-bold' },
+            { t: '> Welcome back to the Kinetic Ether.', c: 'text-primary' }
+        ];
+
+        text.innerHTML = '';
+        let i = 0;
+
+        function addLog() {
+            if (i < logs.length) {
+                const log = logs[i];
+                const p = document.createElement('p');
+                p.className = log.c + ' opacity-0 transition-opacity duration-300';
+                p.innerHTML = log.t;
+                text.appendChild(p);
+                
+                // Trigger reflow for animation
+                setTimeout(() => p.classList.remove('opacity-0'), 10);
+                
+                container.scrollTop = container.scrollHeight;
+                i++;
+                setTimeout(addLog, 400 + Math.random() * 600);
+            } else {
+                btn.innerHTML = 'RE-RUN PROTOCOL';
+                btn.disabled = false;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        addLog();
+    }
+
+    // Lead Profile Animation Logic
+    window.addEventListener('load', () => {
+        const leadLeft = document.getElementById('lead-left');
+        const leadRight = document.getElementById('lead-right');
+
+        // Initial appearance
+        setTimeout(() => {
+            leadLeft.classList.add('active');
+            leadRight.classList.add('active');
+        }, 500);
+
+        // Move to corners
+        setTimeout(() => {
+            leadLeft.classList.add('final');
+            leadRight.classList.add('final');
+        }, 2000);
+    });
+
+    // Particle Background Logic
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let mouse = { x: null, y: null };
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 1.5 + 0.5;
+            this.speedX = Math.random() * 0.5 - 0.25;
+            this.speedY = Math.random() * 0.5 - 0.25;
+            this.color = Math.random() > 0.5 ? '#54e78b' : '#00d2ff';
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            if (this.x > canvas.width) this.x = 0;
+            else if (this.x < 0) this.x = canvas.width;
+            if (this.y > canvas.height) this.y = 0;
+            else if (this.y < 0) this.y = canvas.height;
+
+            // Interaction with mouse
+            if (mouse.x && mouse.y) {
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < 100) {
+                    this.x -= dx * 0.01;
+                    this.y -= dy * 0.01;
+                }
+            }
+        }
+
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function initParticles() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        particles = [];
+        const numberOfParticles = (canvas.width * canvas.height) / 15000;
+        for (let i = 0; i < numberOfParticles; i++) {
+            particles.push(new Particle());
+        }
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+            
+            for (let j = i; j < particles.length; j++) {
+                let dx = particles[i].x - particles[j].x;
+                let dy = particles[i].y - particles[j].y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < 100) {
+                    ctx.strokeStyle = particles[i].color;
+                    ctx.globalAlpha = 1 - (distance / 100);
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(animateParticles);
+    }
+
+    window.addEventListener('resize', initParticles);
+    
+    document.addEventListener('mousemove', (e) => {
+        // Update mouse position for particles
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+
+        // Mouse Parallax for Hero Background
+        const moveX = (e.clientX - window.innerWidth / 2) * 0.05;
+        const moveY = (e.clientY - window.innerHeight / 2) * 0.05;
+        
+        const blobs = document.querySelectorAll('.animate-pulse-slow');
+        blobs.forEach((blob, index) => {
+            const speed = (index + 1) * 0.5;
+            blob.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
+        });
+    });
+
+    initParticles();
+    animateParticles();
+
+    // Smooth Scroll for all links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+</body></html>
