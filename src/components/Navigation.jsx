@@ -42,7 +42,7 @@ export default function Navigation() {
             muted
             loop
             className={`object-contain transition-all duration-300 ${
-              isScrolled ? 'h-8 w-auto' : 'h-12 w-auto'
+              isScrolled ? 'h-10 w-auto' : 'h-12 w-auto'
             }`}
           >
             <source src="/DDD.mkv" type="video/x-matroska" />
