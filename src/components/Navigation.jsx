@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function Navigation() {
-  const navItems = ['Hero', 'Journey', 'Frontend', 'Backend', 'Architecture', 'Advanced']
+  const navItems = ['Hero', 'Journey', 'Frontend', 'Backend', 'Architecture']
   const [isScrolled, setIsScrolled] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,17 +72,36 @@ export default function Navigation() {
             }}
             transition={{ duration: 0.3 }}
           >
-            {navItems.map((item) => (
-              <motion.a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-[#54e78b] hover:text-white transition-colors px-4 py-2 rounded hover:bg-[#54e78b]/10 text-sm whitespace-nowrap"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {item}
-              </motion.a>
-            ))}
+            {['Hero', 'Journey', 'Frontend', 'Backend'].map((item) => {
+              const targetRoute = item === 'Backend' ? '/backend' : '/';
+              
+              return (
+                <motion.div key={item} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    to={targetRoute}
+                    onClick={(e) => {
+                      if (item !== 'Backend') {
+                        if (location.pathname === '/') {
+                          e.preventDefault();
+                          const el = document.getElementById(item.toLowerCase());
+                          if (el) el.scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                          setTimeout(() => {
+                            const el = document.getElementById(item.toLowerCase());
+                            if (el) el.scrollIntoView({ behavior: 'smooth' });
+                          }, 100);
+                        }
+                      } else {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
+                    }}
+                    className="text-[#54e78b] hover:text-white transition-colors px-4 py-2 rounded hover:bg-[#54e78b]/10 text-sm whitespace-nowrap block"
+                  >
+                    {item}
+                  </Link>
+                </motion.div>
+              )
+            })}
           </motion.div>
         </motion.div>
       </motion.nav>

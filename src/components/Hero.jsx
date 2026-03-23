@@ -110,29 +110,7 @@ export default function Hero() {
           Mastering the engine behind the interface.
         </motion.p>
 
-        {/* CTA Buttons */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <motion.button
-            className="btn-primary"
-            whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(84,231,139,0.6)' }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Initialize Journey
-          </motion.button>
-          <motion.button
-            className="btn-secondary"
-            whileHover={{ scale: 1.05, borderColor: 'rgba(84,231,139,0.5)' }}
-            whileTap={{ scale: 0.95 }}
-          >
-            View Codex
-          </motion.button>
-        </motion.div>
+
       </motion.div>
 
       {/* Scroll Indicator */}
